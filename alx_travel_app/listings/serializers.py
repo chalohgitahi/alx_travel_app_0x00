@@ -2,28 +2,24 @@ from rest_framework import serializers
 from .models import User, Listing, Booking, Review
 
 class UserSerializer(serializers.ModelSerializer):
-	email = serializers.CharField(
-        max_length=100,
-        help_text="The email has a (max 100 characters)."
-    )
 	class Meta:
 		model = User
-		fields = ['user_id', 'username', 'email']
+		fields = ['user_id', 'first_name', 'email']
 		
 
 class ListingSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = Listing
-		fields = __all__
+		fields = ['owner', 'listing_id', 'name']
 
 
 class BookingSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = Booking
-		fields = __all__
+		fields = ['booking_id', 'user_id', 'property_id', 'start_date', 'end_date']
 		
 
 class ReviewSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = Review
-		fields = __all__
+		fields = ['review_id', 'property_id', 'rating']
